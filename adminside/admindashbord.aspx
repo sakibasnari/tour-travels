@@ -55,7 +55,9 @@
                             <br /> 
                             Code: <asp:Literal ID="Literal1" runat="server" Text='<%#Eval("code")%>'></asp:Literal> <br />
                             Place: <%#Eval("nam") %> <br />
-                            Price: <%#Eval("price") %>  / per<br />
+                            Price: <%#Eval("price") %>  <br />
+                 discription: <%#Eval("dis") %>  / per<br />
+
                             Quantity: 
                             <asp:DropDownList ID="ddlQuantity" runat="server" CssClass="quantity-dropdown">
                                 <asp:ListItem Text="1" Value="1"></asp:ListItem>

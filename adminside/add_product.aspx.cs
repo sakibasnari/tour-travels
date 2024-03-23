@@ -27,51 +27,30 @@ namespace adminside
         protected void Button1_Click(object sender, EventArgs e)
         {
 
-            {
-
+            
                 FileUpload1.SaveAs(Request.PhysicalApplicationPath + "//upload//" + FileUpload1.FileName);
 
 
-                string querrry = "insert into tour2 values (@code,@nam,@price,@dis,@img)";
+                using (SqlCommand cmd = new SqlCommand("InsertTour", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@code", Textcode.Text);
+                    cmd.Parameters.AddWithValue("@nam", Textname.Text);
+                    cmd.Parameters.AddWithValue("@price", Convert.ToDecimal(Textprice.Text));
+                    cmd.Parameters.AddWithValue("@dis", Textdisc.Text);
+                    cmd.Parameters.AddWithValue("@img", FileUpload1.FileName);
+
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            
+
+            Response.Redirect("admindashbord.aspx");
+        
 
 
-                // WITH SOTRE PROCESSOR
-                //string querrry ="_tourr";
-
-
-                cmd = new SqlCommand(querrry, con);
-                cmd.CommandType = System.Data.CommandType.Text; ;
-
-
-
-
-
-                //cmd.Parameters.AddWithValue("@", (Textsubcat.Text));
-
-                cmd.Parameters.AddWithValue("@code", Textcode.Text);
-                cmd.Parameters.AddWithValue("@nam", Textname.Text);
-                cmd.Parameters.AddWithValue("@price", Convert.ToDecimal(Textprice.Text));
-                cmd.Parameters.AddWithValue("@dis", Textdisc.Text);
-                cmd.Parameters.AddWithValue("@img", FileUpload1.FileName);
-
-                //cmd.Parameters.AddWithValue("@quantity", Convert.ToInt32(Textquantity.Text));
-
-
-
-                //cmd.Parameters.AddWithValue("@", Textmode.Text);
-
-                //con.Open();
-                //cmd.ExecuteNonQuery();     CONNECTED MODE
-                //con.Close();
-
-                adp = new SqlDataAdapter(cmd);
-                // DISCONNECTED MODE
-                adp.Fill(tbl);
-
-                Response.Redirect("admindashbord.aspx");
-
-
-            }
-        }
     }
+        }
+    
     }

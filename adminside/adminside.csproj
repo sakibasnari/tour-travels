@@ -92,7 +92,6 @@
     <Content Include="change_pasword.aspx" />
     <Content Include="dashbord.aspx" />
     <Content Include="editprofile.aspx" />
-    <Content Include="category.aspx" />
     <Content Include="add_product.aspx" />
   </ItemGroup>
   <ItemGroup>
@@ -205,13 +204,6 @@
     </Compile>
     <Compile Include="editprofile.aspx.designer.cs">
       <DependentUpon>editprofile.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="category.aspx.cs">
-      <DependentUpon>category.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="category.aspx.designer.cs">
-      <DependentUpon>category.aspx</DependentUpon>
     </Compile>
     <Compile Include="add_product.aspx.cs">
       <DependentUpon>add_product.aspx</DependentUpon>

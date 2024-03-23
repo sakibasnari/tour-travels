@@ -21,11 +21,18 @@ namespace adminside
 
         protected void BindData()
         {
-            string query = "SELECT * FROM tour2";
-            adp = new SqlDataAdapter(query, con);
-            adp.Fill(tbl);
-            DataList1.DataSource = tbl;
-            DataList1.DataBind();
+            using (SqlCommand cmd = new SqlCommand("SelectTourData", con))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                SqlDataAdapter adp = new SqlDataAdapter(cmd);
+                DataTable tbl = new DataTable();
+
+                adp.Fill(tbl);
+
+                DataList1.DataSource = tbl;
+                DataList1.DataBind();
+            }
         }
 
         protected void btnEdit_Click(object sender, EventArgs e)
@@ -51,21 +58,13 @@ namespace adminside
 
         protected void DeleteProduct(string productId)
         {
-            try
+             using (SqlCommand cmd = new SqlCommand("DeleteTour", con))
             {
-                con.Open();
-                string query = "DELETE FROM tour2 WHERE code = @productId";
-                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@productId", productId);
+
+                con.Open();
                 cmd.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-         
-            }
-            finally
-            {
-                con.Close();
             }
         }
         protected void gotoalert(object sender, EventArgs e)

@@ -21,7 +21,7 @@ namespace adminside
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            string querry1 = "select * from tour2";
+            string querry1 = "SelectTourData";
             adp = new SqlDataAdapter(querry1, con);
             adp.Fill(tbl);
 

@@ -23,11 +23,18 @@ namespace adminside
 
         protected void Bind()
         {
-            string querry1 = "select * from tour2";
-            adp = new SqlDataAdapter(querry1, con);
+             using (SqlCommand cmd = new SqlCommand("SelectTourData", con))
+        {
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlDataAdapter adp = new SqlDataAdapter(cmd);
+            DataTable tbl = new DataTable();
+
             adp.Fill(tbl);
+
             DataList1.DataSource = tbl;
             DataList1.DataBind();
+        }
         }
 
         protected void btncancel_Click(object sender, EventArgs e)
